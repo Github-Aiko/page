@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        window.addEventListener('load', function() {
+            const requestURL = window.location.href;
+            const requestPath = window.location.pathname;
+            const timestamp = new Date().toISOString();
+            
+            // Log request data to console
+            console.log('404 Error:', {
+                url: requestURL,
+                path: requestPath,
+                timestamp: timestamp,
+                referrer: document.referrer,
+                userAgent: navigator.userAgent
+            });
+            
+            // Optional: Send this data to an analytics service or your own endpoint
+            // This example uses fetch to send to a hypothetical API
+            /*
+            fetch('https://your-analytics-api.com/collect', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    type: '404',
+                    url: requestURL,
+                    path: requestPath,
+                    timestamp: timestamp,
+                    referrer: document.referrer,
+                    userAgent: navigator.userAgent
+                })
+            });
+            */
+            
+            // Display the path in the error message
+            document.getElementById('requested-path').textContent = requestPath;
+        });
+    </script>
+</head>
+<body>
+    <div class="error-container">
+        <h1>404 - Page Not Found</h1>
+        <p>The page <span id="requested-path">(unknown)</span> you were looking for doesn't exist.</p>
+        <p>Return to <a href="/">homepage</a></p>
+    </div>
+</body>
+</html>
